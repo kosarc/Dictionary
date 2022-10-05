@@ -1,3 +1,6 @@
+import React from "react";
+import Audio from "./Audio";
+
 function ApiRespone(props) {
   if (props.results) {
     return (
@@ -8,7 +11,7 @@ function ApiRespone(props) {
               <div key={index}>
                 <h2>{value.word}</h2>
                 <div className="phonetic">
-                  <audio controls src={value.phonetics[0].audio} />
+                  <Audio audioSrc={value.phonetics[0]} />
                   {value.phonetic}
                 </div>
                 {value.meanings.map((meaning, index) => {

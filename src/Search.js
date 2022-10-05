@@ -1,11 +1,14 @@
 import "./Search.css";
 import React, { useState } from "react";
 import axios from "axios";
+import ApiRespone from "./ApiRespone";
 
 function Search() {
   const [value, setValue] = useState(null);
+  const [apiResult, setApiResult] = useState(false);
   function handleRespone(respone) {
     console.log(respone.data);
+    setApiResult(respone.data);
   }
   function handleSubmit(event) {
     event.preventDefault();
@@ -40,6 +43,7 @@ function Search() {
           </button>
         </div>
       </form>
+      <ApiRespone results={apiResult} />
     </div>
   );
 }

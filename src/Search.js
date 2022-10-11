@@ -1,50 +1,102 @@
 import "./Search.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ApiRespone from "./ApiRespone";
 
 function Search() {
-  const [value, setValue] = useState(null);
+  const [value, setValue] = useState("on");
+  const [synonymValue, setSynonymValue] = useState("off");
   const [apiResult, setApiResult] = useState(false);
+  useEffect(() => {
+    launchSubmit();
+    // eslint-disable-next-line
+  }, [synonymValue]);
+
+  function error(error) {
+    console.log(error);
+    alert(error.response.data.message);
+  }
+
+  function launchSubmit() {
+    if (synonymValue === "off") {
+      return null;
+    } else {
+      handleSubmit();
+    }
+  }
+
   function handleRespone(respone) {
-    console.log(respone.data);
     setApiResult(respone.data);
   }
   function handleSubmit(event) {
-    event.preventDefault();
-    let word = value;
-    let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
-    axios.get(apiUrl).then(handleRespone);
+    if (event) {
+      setValue(event.target[0].value);
+      event.preventDefault();
+      let word = event.target[0].value;
+      let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+      axios.get(apiUrl).then(handleRespone);
+    } else {
+      let word = synonymValue;
+      let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+      axios.get(apiUrl).catch(error).then(handleRespone);
+    }
   }
 
-  function handleChange(props) {
-    setValue(props.target.value);
+  function pull_data(data) {
+    if (data) {
+      setSynonymValue(data);
+    }
   }
 
-  return (
-    <div className="Search">
-      <form onSubmit={handleSubmit}>
-        <div className="input-group mb-3">
-          <input
-            type="search"
-            className="form-control w-50"
-            placeholder="Type a word..."
-            aria-label="Recipient's username"
-            aria-describedby="button-addon2"
-            autoFocus={true}
-            onChange={handleChange}
-          />
-          <button
-            className="btn btn-outline-secondary"
-            type="button"
-            id="button-addon2"
-          >
-            🔍
-          </button>
-        </div>
-      </form>
-      <ApiRespone results={apiResult} />
-    </div>
-  );
+  if (synonymValue === "off" && value === "on") {
+    return (
+      <div className="Search">
+        <form onSubmit={handleSubmit}>
+          <div className="input-group mb-3">
+            <input
+              type="search"
+              className="form-control w-50"
+              placeholder="Type a word..."
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+              autoFocus={true}
+            />
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              id="button-addon2"
+            >
+              🔍
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  } else {
+    return (
+      <div className="Search">
+        <form onSubmit={handleSubmit}>
+          <div className="input-group mb-3">
+            <input
+              type="search"
+              className="form-control w-50"
+              placeholder="Type a word..."
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+              autoFocus={true}
+            />
+            <button
+              className="btn btn-outline-secondary"
+              type="button"
+              id="button-addon2"
+            >
+              🔍
+            </button>
+          </div>
+        </form>
+        <ApiRespone results={apiResult} func={pull_data} />
+      </div>
+    );
+  }
 }
 export default Search;

@@ -1,7 +1,9 @@
-.App h1 {
+.App h1 a {
   text-align: center;
+  display: block;
   color: blueviolet;
   margin-top: 20px;
+  text-decoration: none;
 }
 
 .App .phonetic {
@@ -10,4 +12,14 @@
 .App .part-of-speech {
   opacity: 0.7;
   font-style: italic;
+}
+.App .Play button {
+  border-radius: 100%;
+  height: 60px;
+  font-size: 25px;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+.App .Synonyms {
+  padding: 0 2px 2px 0;
 }

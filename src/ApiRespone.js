@@ -1,41 +1,54 @@
-import React from "react";
-import Audio from "./Audio";
+import React, { useState } from "react";
+import Play from "./Play";
+import Category from "./Category";
+import Synonyms from "./Synonyms";
 
 function ApiRespone(props) {
-  if (props.results) {
+  const [childData, setChildData] = useState(null);
+  function pull_data(data) {
+    setChildData(data);
+  }
+  if (props.results && childData === null) {
     return (
       <div className="ApiRespone">
         <div>
-          {props.results.map((value, index) => {
-            return (
-              <div key={index}>
-                <h2>{value.word}</h2>
-                <div className="phonetic">
-                  <Audio audioSrc={value.phonetics[0]} />
-                  {value.phonetic}
-                </div>
-                {value.meanings.map((meaning, index) => {
-                  return (
-                    <div key={index}>
-                      <div className="part-of-speech">
-                        {meaning.partOfSpeech}
-                      </div>
-                      <ul>
-                        {meaning.definitions.map((definition, index) => {
-                          return <li key={index}>{definition.definition}</li>;
-                        })}
-                      </ul>
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
+          See definitions in:
+          <Category data={props.results} func={pull_data} />
+          <Play audioSrc={props.results[0]} /> <h2>{props.results[0].word}</h2>
+          <div className="phonetic">{props.results[0].phonetic}</div>
+          <div className="part-of-speech">
+            {props.results[0].meanings[0].partOfSpeech}
+          </div>
+          <ul>
+            <li>{props.results[0].meanings[0].definitions[0].definition}</li>
+          </ul>
+          <Synonyms words={props.results[0].meanings[0]} func={props.func} />
         </div>
       </div>
     );
   } else {
-    return null;
+    if (props.results && childData === "All") {
+      return (
+        <div className="ApiRespone">
+          <div>
+            See definitions in:
+            <Category data={props.results} func={pull_data} />
+          </div>
+        </div>
+      );
+    }
+    if (props.results && childData === "Main") {
+      return (
+        <div className="ApiRespone">
+          <div>
+            See definitions in:
+            <Category data={props.results} func={pull_data} />
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }
 export default ApiRespone;

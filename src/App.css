@@ -5,6 +5,19 @@
   margin-top: 20px;
   text-decoration: none;
 }
+.App h2 {
+  margin-left: 5px;
+  display: inline-block;
+}
+.App small {
+  display: block;
+  text-align: center;
+}
+
+.App .word-sound {
+  display: inline-block;
+  margin: 5px 0;
+}
 
 .App .phonetic {
   font-size: 16px;
@@ -13,13 +26,30 @@
   opacity: 0.7;
   font-style: italic;
 }
-.App .Play button {
-  border-radius: 100%;
-  height: 60px;
-  font-size: 25px;
-  padding: 15px;
-  border: 1px solid #ddd;
-}
+
 .App .Synonyms {
   padding: 0 2px 2px 0;
+}
+.App .definition {
+  opacity: 0.7;
+}
+
+.App .Play button {
+  background-color: transparent;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  padding: 1px;
+}
+
+.App .Play button:hover {
+  background-color: #f4f4f4;
+}
+
+.App .Play svg {
+  fill: #1c73e8;
+  width: 35px;
+  height: 35px;
+}
+.App li {
+  list-style-type: circle;
 }

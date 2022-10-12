@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Play from "./Play";
 import Synonyms from "./Synonyms";
+import "./Category.css";
 
 function Category(props) {
   const [main, setMain] = useState(false);
@@ -8,32 +9,32 @@ function Category(props) {
   function handleClickMain() {
     setMain(true);
     setAll(false);
-    props.func("Main");
+    props.Func("Main");
   }
   function handleClickAll() {
     setAll(true);
     setMain(false);
-    props.func("All");
+    props.Func("All");
   }
   if (main === true && all === false)
     return (
-      <div>
+      <div className="Category">
         <button onClick={handleClickAll}>All</button>
         <button onClick={handleClickMain}>Main</button>
         <div>
-          <Play audioSrc={props.data[0]} /> {props.data[0].word}
+          <Play audioSrc={props.data[0]} /> <h2>{props.data[0].word}</h2>
           <div>{props.data[0].phonetic}</div>
           <div>
             {props.data[0].meanings.map((value, index) => {
               return (
                 <div key={index}>
-                  {value.partOfSpeech}
+                  <div className="part-of-speech">{value.partOfSpeech}</div>
                   <ul>
                     {value.definitions.map((value, index) => {
                       return <li key={index}>{value.definition}</li>;
                     })}
                   </ul>
-                  <Synonyms words={value} />
+                  <Synonyms words={value} func={props.func} />
                 </div>
               );
             })}
@@ -44,7 +45,7 @@ function Category(props) {
   else {
     if (main === false && all === true) {
       return (
-        <div>
+        <div className="Category">
           <button onClick={handleClickAll}>All</button>
           <button onClick={handleClickMain}>Main</button>
           <div>
@@ -65,7 +66,7 @@ function Category(props) {
                             return <li key={index}>{definition.definition}</li>;
                           })}
                         </ul>
-                        <Synonyms words={meaning} />
+                        <Synonyms words={meaning} func={props.func} />
                       </div>
                     );
                   })}
@@ -77,7 +78,7 @@ function Category(props) {
       );
     } else {
       return (
-        <div>
+        <div className="Category">
           <button onClick={handleClickAll}>All</button>
           <button onClick={handleClickMain}>Main</button>
         </div>

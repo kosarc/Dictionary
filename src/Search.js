@@ -2,6 +2,7 @@ import "./Search.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ApiRespone from "./ApiRespone";
+import PopUp from "./PopUp";
 
 function Search() {
   const [value, setValue] = useState("on");
@@ -12,10 +13,7 @@ function Search() {
     // eslint-disable-next-line
   }, [synonymValue]);
 
-  function error(error) {
-    console.log(error);
-    alert(error.response.data.message);
-  }
+  function error(error) {}
 
   function launchSubmit() {
     if (synonymValue === "off") {
@@ -94,6 +92,7 @@ function Search() {
             </button>
           </div>
         </form>
+        <PopUp />
         <ApiRespone results={apiResult} func={pull_data} />
       </div>
     );

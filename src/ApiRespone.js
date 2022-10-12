@@ -12,9 +12,12 @@ function ApiRespone(props) {
     return (
       <div className="ApiRespone">
         <div>
-          See definitions in:
-          <Category data={props.results} func={pull_data} />
-          <Play audioSrc={props.results[0]} /> <h2>{props.results[0].word}</h2>
+          <span className="definition">See definitions in:</span>
+          <Category data={props.results} Func={pull_data} />
+          <span className="word-sound">
+            <Play audioSrc={props.results[0]} />{" "}
+            <h2>{props.results[0].word}</h2>
+          </span>
           <div className="phonetic">{props.results[0].phonetic}</div>
           <div className="part-of-speech">
             {props.results[0].meanings[0].partOfSpeech}
@@ -31,8 +34,8 @@ function ApiRespone(props) {
       return (
         <div className="ApiRespone">
           <div>
-            See definitions in:
-            <Category data={props.results} func={pull_data} />
+            <span className="definition">See definitions in:</span>
+            <Category data={props.results} Func={pull_data} func={props.func} />
           </div>
         </div>
       );
@@ -41,8 +44,8 @@ function ApiRespone(props) {
       return (
         <div className="ApiRespone">
           <div>
-            See definitions in:
-            <Category data={props.results} func={pull_data} />
+            <span className="definition">See definitions in:</span>
+            <Category data={props.results} Func={pull_data} func={props.func} />
           </div>
         </div>
       );

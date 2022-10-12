@@ -1,4 +1,5 @@
 import React from "react";
+import "./Synonyms.css";
 
 function Synonyms(props) {
   function handleClick(data) {
@@ -8,13 +9,15 @@ function Synonyms(props) {
   // eslint-disable-next-line
   if (props.words.synonyms != [].length) {
     return (
-      <span>
-        Synonyms:{" "}
+      <span className="Synonyms">
+        <span className="synonym">Similar: </span>
         {props.words.synonyms.map((value, index) => {
           if (value) {
             return (
               <span key={index}>
-                <button onClick={handleClick}>{value}</button>{" "}
+                <button onClick={handleClick} className="synonyms-button">
+                  {value}
+                </button>{" "}
               </span>
             );
           } else {

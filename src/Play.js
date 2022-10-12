@@ -1,3 +1,5 @@
+import Speaker from "./Speaker";
+
 function Play(props) {
   function isUrl(set) {
     return set.audio !== "";
@@ -13,7 +15,13 @@ function Play(props) {
       audio.play();
     }
 
-    return <button onClick={handleClick}>play</button>;
+    return (
+      <span className="Play">
+        <button onClick={handleClick}>
+          <Speaker />
+        </button>
+      </span>
+    );
   } else {
     return null;
   }

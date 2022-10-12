@@ -1,0 +1,13 @@
+.Category button {
+  background-color: transparent;
+  border-radius: 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  padding: 2px 10px;
+  transition: 200ms;
+  margin-right: 5px;
+}
+
+.Category button:hover {
+  background-color: #f4f4f4;
+}

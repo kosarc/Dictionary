@@ -1,0 +1,15 @@
+.Synonyms .synonyms-button {
+  background-color: transparent;
+  border-radius: 12px;
+  font-size: 12px;
+  border: 1px solid #ddd;
+  padding: 1px 10px;
+  transition: 200ms;
+}
+.Synonyms .synonyms-button:hover {
+  background-color: #f4f4f4;
+}
+
+.Synonyms .synonym {
+  color: #178037;
+}

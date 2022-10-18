@@ -1,0 +1,9 @@
+.Play .on,
+.Play .off {
+  transition-duration: 2s;
+  transition-property: transform;
+}
+.Play .off {
+  transform: rotate(-360deg);
+  -webkit-transform: rotate(-360deg);
+}

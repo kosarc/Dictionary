@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Play from "./Play";
 import Synonyms from "./Synonyms";
 import "./Category.css";
+import Photos from "./Photos";
 
 function Category(props) {
   const [main, setMain] = useState(false);
@@ -20,7 +21,9 @@ function Category(props) {
     return (
       <div className="Category">
         <button onClick={handleClickAll}>All</button>
-        <button onClick={handleClickMain}>Main</button>
+        <button onClick={handleClickMain} className="main-selected">
+          Main
+        </button>
         <div>
           <Play audioSrc={props.data[0]} /> <h2>{props.data[0].word}</h2>
           <div>{props.data[0].phonetic}</div>
@@ -46,7 +49,9 @@ function Category(props) {
     if (main === false && all === true) {
       return (
         <div className="Category">
-          <button onClick={handleClickAll}>All</button>
+          <button onClick={handleClickAll} className="all-selected">
+            All
+          </button>
           <button onClick={handleClickMain}>Main</button>
           <div>
             <Play audioSrc={props.data[0]} />{" "}
@@ -74,6 +79,7 @@ function Category(props) {
               );
             })}
           </div>
+          <Photos word={props.data[0].word} />
         </div>
       );
     } else {

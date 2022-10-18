@@ -1,5 +1,13 @@
 .Search {
-  max-width: 300px;
+  max-width: 800px;
   display: block;
-  margin: 50px auto;
+  margin: 5px auto;
+}
+.Search .search-line {
+  border-right: 0;
+  border-color: #ddd;
+}
+.Search .btn-submit {
+  border-left: 0;
+  border-color: #ddd;
 }

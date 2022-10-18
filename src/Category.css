@@ -11,3 +11,11 @@
 .Category button:hover {
   background-color: #f4f4f4;
 }
+.Category .all-selected,
+.Category .main-selected,
+.Category .all-selected:hover,
+.Category .main-selected:hover {
+  color: #215fd7;
+  background-color: #e7f1fe;
+  border: 1px solid #d2e3fc;
+}

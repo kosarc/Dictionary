@@ -1,6 +1,9 @@
 import Speaker from "./Speaker";
+import { useState } from "react";
+import "./Play.css";
 
 function Play(props) {
+  const [isActive, setIsActive] = useState(false);
   function isUrl(set) {
     return set.audio !== "";
   }
@@ -11,13 +14,14 @@ function Play(props) {
   if (urlAudio) {
     urlAudio = arr.find(isUrl).audio;
     function handleClick() {
+      setIsActive((current) => !current);
       let audio = new Audio(urlAudio);
       audio.play();
     }
 
     return (
       <span className="Play">
-        <button onClick={handleClick}>
+        <button className={isActive ? "on" : "off"} onClick={handleClick}>
           <Speaker />
         </button>
       </span>

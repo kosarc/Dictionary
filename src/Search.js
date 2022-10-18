@@ -82,19 +82,15 @@ function Search() {
           <div className="input-group mb-3">
             <input
               type="search"
-              className="form-control w-50"
+              className="form-control w-50 search-line"
               placeholder="Search for a word"
-              aria-label="Recipient's username"
-              aria-describedby="button-addon2"
               autoFocus={true}
             />
-            <button
-              className="btn btn-outline-secondary"
-              type="button"
-              id="button-addon2"
-            >
-              🔍
-            </button>
+            <input
+              className="btn btn-outline-secondary btn-submit"
+              type="submit"
+              value="🔍"
+            />
           </div>
         </form>
         <PopUp />

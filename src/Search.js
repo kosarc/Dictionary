@@ -31,10 +31,6 @@ function Search() {
     setApiResult(respone.data);
   }
   function handleSubmit(event) {
-    window.scrollTo({
-      top: 80,
-      behavior: "smooth",
-    });
     if (event) {
       setValue(event.target[0].value);
       event.preventDefault();
@@ -47,6 +43,10 @@ function Search() {
       let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
       axios.get(apiUrl).then(handleRespone).catch(error);
     }
+    window.scrollTo({
+      top: 80,
+      behavior: "smooth",
+    });
   }
 
   function pull_data(data) {
